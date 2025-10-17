@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function Header() {
+export default function Header () {
   const pathname = usePathname();
 
   const links = [
@@ -13,7 +13,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="w-full flex bg-transparent text-color-text gap-60 p-8">
+    <header className="w-full flex bg-transparent text-color-text gap-60  px-26 py-6">
       <div className="text-3xl w-1/3 flex items-center font-bold">BRH Weather</div>
       <div className="w-1/3 flex justify-center items-center">
         <ul className="flex text-xl gap-10 text-color-text">

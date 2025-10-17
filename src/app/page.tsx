@@ -1,10 +1,13 @@
+'use client';
 import data from './data/data.json';
 import { Card } from "antd";
 import Image from "next/image";
 import Filter from './components/Filter';
+import { useState } from 'react';
 
-export default async function Home() {
+export default function Home() {
 console.log(data);
+
 
 interface WeatherData {
   ville: string;
@@ -16,7 +19,6 @@ interface WeatherData {
   icone: string;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const weatherData: WeatherData[] = data.meteo.map((item: any) => ({
   ville: item.ville,
   pays: item.pays,
@@ -27,14 +29,20 @@ const weatherData: WeatherData[] = data.meteo.map((item: any) => ({
   icone: item.icone,  
 }));
 
+const [meteoFiltered, setMeteosFiltered] = useState<WeatherData[]>(() => weatherData);
+
+const handleFilterChange = (filteredData: WeatherData[]) => {
+    setMeteosFiltered(filteredData);
+}
+
   return (
     <>
-    <Filter />
     <div className="flex flex-col items-center justify-center py-2">
         <h1 className="w-3xl text-4xl text-title mb-4 text-center">Seeing the weather of the whole world with <b> <span className="text-cyan-700">Dark Weather!</span></b></h1>
     </div>
+     <Filter filterChange= {handleFilterChange}/>
     <div className='flex gap-10 flex-wrap justify-center py-20'>
-      {weatherData.map((data: WeatherData) => (
+      {meteoFiltered.slice(0).map((data: WeatherData) => (
         <Card key={data.ville} style={{ backgroundColor: "var(--color-secondary)", color: "var(--color-text)", gap: "100px", marginBottom: "20px", display: "flex", alignItems: "center", border: "none", paddingTop: '120px' }} >
           <Image 
           src={data.icone} 
