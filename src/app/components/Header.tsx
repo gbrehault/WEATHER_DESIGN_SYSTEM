@@ -112,7 +112,7 @@ export default function Header({ filtersDisabled, onToggleFiltersDisabled }: Hea
   <p>
     Vous pouvez filtrer les informations selon la ville, ajuster le nombre de
     résultats visibles et activer ou désactiver les paramètres directement depuis
-    la fenêtre “Settings”.
+    la fenêtre 'Settings'.
   </p>
   <p>
     Ce projet a été conçu par <strong>Gabriel Bréhault</strong> dans le cadre du
