@@ -6,8 +6,8 @@ import { usePathname } from "next/navigation";
 import { Modal, Select, InputNumber, Button, Space } from "antd";
 
 type HeaderProps = {
-  filtersDisabled: boolean;
-  onToggleFiltersDisabled: () => void;
+  filtersDisabled?: boolean;
+  onToggleFiltersDisabled?: () => void;
 };
 
 export default function Header({ filtersDisabled, onToggleFiltersDisabled }: HeaderProps) {
@@ -71,10 +71,10 @@ export default function Header({ filtersDisabled, onToggleFiltersDisabled }: Hea
   onOk={() => setIsSettingsOpen(false)}
   onCancel={() => setIsSettingsOpen(false)}
 >
-  <p>Ici tu pourras configurer ta météo :</p>
-  <p>- Choix de la ville par défaut</p>
-  <p>- Unités (°C / °F)</p>
-  <p>- Thème clair / sombre</p>
+  <p>{"Ici tu pourras configurer ta météo :"}</p>
+  <p>{"- Choix de la ville par défaut"}</p>
+  <p>{"- Unités (°C / °F)"}</p>
+  <p>{"- Thème clair / sombre"}</p>
 
   <Button
     type="default"
@@ -98,7 +98,7 @@ export default function Header({ filtersDisabled, onToggleFiltersDisabled }: Hea
 </Modal>
 
 <Modal
-  title="À propos de BRH Weather"
+  title={"À propos de BRH Weather"}
   open={isAboutOpen}
   onOk={() => setIsAboutOpen(false)}
   onCancel={() => setIsAboutOpen(false)}
@@ -112,7 +112,7 @@ export default function Header({ filtersDisabled, onToggleFiltersDisabled }: Hea
   <p>
     Vous pouvez filtrer les informations selon la ville, ajuster le nombre de
     résultats visibles et activer ou désactiver les paramètres directement depuis
-    la fenêtre 'Settings'.
+    la fenêtre Settings.
   </p>
   <p>
     Ce projet a été conçu par <strong>Gabriel Bréhault</strong> dans le cadre du

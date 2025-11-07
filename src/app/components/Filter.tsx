@@ -2,33 +2,35 @@
 
 import { Select, Button, Space, InputNumber } from "antd";
 import { useState } from "react";
-import data from "../data/data.json";
+import type { WeatherData } from "../page"; // on réutilise le type
 
-type WeatherItem = any;
 type Props = {
-  filterChange: (filtered: WeatherItem[]) => void;
   disabled: boolean;
+  allData: WeatherData[];
+  filterChange: (filteredData: WeatherData[]) => void;
 };
 
-export default function Filter({ filterChange, disabled }: Props) {
+export default function Filter({ filterChange, disabled, allData }: Props) {
   const [value, setValue] = useState<number | null>(1);
 
   const villeNames = [
     "Toutes les villes",
-    ...Array.from(new Set(data.meteo.map((item) => item.ville))),
+    ...Array.from(new Set(allData.map((item) => item.ville))),
   ];
 
-  const handleCityName = (value: string) => {
+  const handleCityName = (val: string) => {
     const filtered =
-      value === "Toutes les villes"
-        ? data.meteo
-        : data.meteo.filter((item) => item.ville === value);
+      val === "Toutes les villes"
+        ? allData
+        : allData.filter((item) => item.ville === val);
+
     filterChange(filtered);
   };
 
-  const handleInputChange = (value: number | null) => {
+  const handleInputChange = (val: number | null) => {
     const filteredNumber =
-      value !== null ? data.meteo.slice(0, value) : data.meteo;
+      val !== null ? allData.slice(0, val) : allData;
+
     filterChange(filteredNumber);
   };
 
