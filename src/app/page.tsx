@@ -8,6 +8,9 @@ import { useState } from 'react';
 export default function Home() {
 console.log(data);
 
+const [filtersDisabled, setFiltersDisabled] = useState(false);
+
+
 
 interface WeatherData {
   ville: string;
@@ -40,7 +43,10 @@ const handleFilterChange = (filteredData: WeatherData[]) => {
     <div className="flex flex-col items-center justify-center py-2">
         <h1 className="w-3xl text-4xl text-title mb-4 text-center">Seeing the weather of the whole world with <b> <span className="text-cyan-700">Dark Weather!</span></b></h1>
     </div>
-     <Filter filterChange= {handleFilterChange}/>
+<Filter
+  disabled={false}
+  filterChange={handleFilterChange}
+/>
     <div className='flex gap-10 flex-wrap justify-center py-20'>
       {meteoFiltered.slice(0).map((data: WeatherData) => (
         <Card key={data.ville} style={{ backgroundColor: "var(--color-secondary)", color: "var(--color-text)", gap: "100px", marginBottom: "20px", display: "flex", alignItems: "center", border: "none", paddingTop: '120px' }} >
